@@ -3,7 +3,8 @@ import React from 'react'
 function Button(props){
     const {children, style, onClick} = props
   return(
-    <button style={style ? style : {background :'red' , color:'white'}} onClick={onClick}>{children}</button>
+   
+    <button style={style ? style : {background :'black' , color:'white'}} onClick={onClick}>{children}</button>
 )
 }
 
