@@ -2,7 +2,7 @@ import { PrismaClient, Prisma } from '../src/app/generated/prisma'
 
 const prisma = new PrismaClient()
 
-const userData: Prisma.UsersCreateInput[] = [
+const userData: Prisma.UserCreateInput[] = [
   {
     name: 'Alice',
     email: 'alice@prisma.io',
@@ -11,7 +11,7 @@ const userData: Prisma.UsersCreateInput[] = [
         {
           title: 'Join the Prisma Discord',
           content: 'https://pris.ly/discord',
-        //   published: true,
+          published: true,
         },
         {
           title: 'Prisma on YouTube',
@@ -28,7 +28,7 @@ const userData: Prisma.UsersCreateInput[] = [
         {
           title: 'Follow Prisma on Twitter',
           content: 'https://www.twitter.com/prisma',
-        //   published: true,
+          published: true,
         },
       ],
     },
@@ -37,7 +37,7 @@ const userData: Prisma.UsersCreateInput[] = [
 
 export async function main() {
   for (const u of userData) {
-    await prisma.users.create({ data: u })
+    await prisma.user.create({ data: u })
   }
 }
 
