@@ -21,3 +21,30 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+*storybook.log
+*.map
+*.json
+*.yml
+button component/node_modules/array.prototype.flatmap/.eslintrc
+/button component/node_modules/array.prototype.flatmap
+*.js
+*.md
+/button component/node_modules/string.prototype.trimstart
+/button component/node_modules
+*.mjs
+*.svg
+*.md
+*.md
+*.md
+*.ico
+*.json
+*.json
+/attendance-management/node_modules
+/attendance-management/public
+/attendance-management/package-lock.json
+/attendance-management/package.json
+/attendance-management/postcss.config.mjs
+/attendance-management/README.md
+/attendance-management/tsconfig.json
+/attendance-management/vitest.config.ts
