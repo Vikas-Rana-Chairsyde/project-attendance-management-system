@@ -1,5 +1,8 @@
+import tailwindcssPostcss from '@tailwindcss/postcss';
+
+
 const config = {
-  plugins: ["@tailwindcss/postcss"],
+  plugins: [tailwindcssPostcss],
 };
 
 export default config;
