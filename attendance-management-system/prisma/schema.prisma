@@ -1,0 +1,183 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model master_industries {
+  id           Int         @id @default(autoincrement())
+  default_name String
+  display_name String
+  companies    companies[]
+}
+
+model master_request_types {
+  id                 Int                   @id @default(autoincrement())
+  default_name       String
+  display_name       String
+  requests           requests[]
+  user_leaves        user_leave[]
+  company_allocation company_allocations[]
+}
+
+model master_request_statuses {
+  id           Int        @id @default(autoincrement())
+  default_name String
+  display_name String
+  requests     requests[]
+}
+
+model master_blood_groups {
+  id            Int                    @id @default(autoincrement())
+  default_name  String
+  display_name  String
+  user_profiles user_profile_details[]
+}
+
+model master_user_roles {
+  id           Int     @id @default(autoincrement())
+  default_name String
+  display_name String
+  users        users[]
+}
+
+model master_user_statuses {
+  id           Int     @id @default(autoincrement())
+  default_name String
+  display_name String
+  users        users[]
+}
+
+model companies {
+  id            Int                   @id @default(autoincrement())
+  name          String
+  industry_id   Int
+  size          Int
+  address       String
+  working_hours Int
+  closing_time  DateTime
+  industry      master_industries     @relation(fields: [industry_id], references: [id])
+  policies      policies[]
+  holidays      holidays[]
+  users         users[]
+  designations  designations[]
+  allocations   company_allocations[]
+}
+
+model users {
+  id          Int                   @id @default(autoincrement())
+  name        String
+  email       String                @unique
+  password    String
+  manager_id  Int?
+  company_id  Int?
+  role_id     Int?
+  status_id   Int?
+  attendances attendances[]
+  requests    requests[]
+  user_leaves user_leave[]
+  profile     user_profile_details?
+  manager     users?                @relation("Manager", fields: [manager_id], references: [id])
+  company     companies?            @relation(fields: [company_id], references: [id])
+  role        master_user_roles?    @relation(fields: [role_id], references: [id])
+  status      master_user_statuses? @relation(fields: [status_id], references: [id])
+  User        users[]               @relation("Manager")
+  Request     requests[]            @relation("Approver")
+}
+
+model user_profile_details {
+  id             Int                 @id @default(autoincrement())
+  profile_pic    String
+  phone_no       String
+  dob            DateTime
+  doj            DateTime
+  blood_group_id Int
+  address        String
+  designation_id Int
+  user_id        Int                 @unique
+  blood_group    master_blood_groups @relation(fields: [blood_group_id], references: [id])
+  designation    designations        @relation(fields: [designation_id], references: [id])
+  user           users               @relation(fields: [user_id], references: [id])
+}
+
+model designations {
+  id         Int                    @id @default(autoincrement())
+  company_id Int
+  name       String
+  company    companies              @relation(fields: [company_id], references: [id])
+  users      user_profile_details[]
+}
+
+model attendances {
+  id        Int      @id @default(autoincrement())
+  user_id   Int
+  date      DateTime
+  clock_in  DateTime
+  clock_out DateTime
+  remote    Boolean
+  user      users    @relation(fields: [user_id], references: [id])
+}
+
+model requests {
+  id              Int                     @id @default(autoincrement())
+  request_type_id Int
+  user_id         Int
+  from            DateTime
+  to              DateTime
+  approved_by     Int
+  status_id       Int
+  reason          String
+  full_day        Boolean
+  request_type    master_request_types    @relation(fields: [request_type_id], references: [id])
+  user            users                   @relation(fields: [user_id], references: [id])
+  approver        users                   @relation("Approver", fields: [approved_by], references: [id])
+  status          master_request_statuses @relation(fields: [status_id], references: [id])
+}
+
+model policies {
+  id                    Int       @id @default(autoincrement())
+  company_id            Int
+  auto_checkout_enabled Boolean
+  auto_checkout_time    DateTime
+  time_format           String
+  company               companies @relation(fields: [company_id], references: [id])
+}
+
+model holidays {
+  id          Int       @id @default(autoincrement())
+  company_id  Int
+  title       String
+  date        DateTime
+  description String
+  company     companies @relation(fields: [company_id], references: [id])
+}
+
+model company_allocations {
+  id              Int                  @id @default(autoincrement())
+  request_type_id Int
+  default_days    Int
+  company_id      Int
+  request_type    master_request_types @relation(fields: [request_type_id], references: [id])
+  company         companies            @relation(fields: [company_id], references: [id])
+}
+
+model user_leave {
+  id            Int                  @id @default(autoincrement())
+  user_id       Int
+  leave_type_id Int
+  allocated     Int
+  used          Int
+  remaining     Int
+  leave_type    master_request_types @relation(fields: [leave_type_id], references: [id])
+  user          users                @relation(fields: [user_id], references: [id])
+}
