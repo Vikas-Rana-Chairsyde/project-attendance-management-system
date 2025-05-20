@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import fbIcon from "../../stories/assets/icons8-facebook-logo-50.png";
@@ -6,8 +6,10 @@ import googleIcon from "../../stories/assets/icons8-google.svg";
 import appleIcon from "../../stories/assets/icons8-apple-logo-30.png";
 import emailIcon from "../../stories/assets/icons8-email-48.png";
 import hideIcon from "../../stories/assets/icons8-hide-50.png";
+import showIcon from "../../stories/assets/icons8-show-32.png";
 import logo from "../../stories/assets/Logo-Schedura.png";
 import Image from 'next/image';
+
 
 const SignInForm = () => {
     const initialValues = {
@@ -26,7 +28,8 @@ const SignInForm = () => {
             .min(8, 'Password must be at least 8 characters.')
 
     });
-
+    const [showPassword, setShowPassword] = useState(false);
+    const togglePassword = () => setShowPassword(prev => !prev);
     const handleSubmit = (values: typeof initialValues) => {
         console.log('Form submitted:', values);
     };
@@ -82,8 +85,8 @@ const SignInForm = () => {
                         </div>
                         <div id="password">
                             <label>Password</label>
-                            <Field type="password" name="password"></Field>
-                            <Image src={hideIcon} alt="emailIcon" id="hide"></Image>
+                            <Field name="password" type={showPassword ? 'text' : 'password'} id="input"/>
+                            <Image src= {showIcon} alt="passwordIcon" id="hide" onClick={togglePassword} ></Image>
                             <div id='error2'>
                                 <ErrorMessage name="password" component="div" />
                             </div>
@@ -100,6 +103,8 @@ const SignInForm = () => {
                         <div>
                             <p id="p">Don't have an account? <a href="#" id="underline">Create Account</a></p>
                         </div>
+
+            
                         {/* <div id="or">
                             <hr style={{ width: "45%", height: "0.01px", color: "rgb(255, 255, 255)" }} />
                             <p>Or</p>
@@ -111,11 +116,13 @@ const SignInForm = () => {
                             <button id="google"><Image src={googleIcon} alt="googleIcon" /></button>
                             <button id="apple"><Image src={appleIcon} alt="googleIcon" /></button>
                         </div> */}
+                        
                     </Form>
                 </Formik>
             </div>
         </div>
     );
 };
+
 
 export default SignInForm;
