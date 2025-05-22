@@ -2,13 +2,10 @@
 import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import fbIcon from "@/public/assets/icons8-facebook-logo-50.png";
-import googleIcon from "@/public/assets/icons8-google.svg";
-import appleIcon from "@/public/assets/icons8-apple-logo-30.png";
 import emailIcon from "@/public/assets/icons8-email-48.png";
 import hideIcon from "@/public/assets/hide.png";
 import showIcon from "@/public/assets/show.png";
-import logo from "@/public/assets/Logo-Schedura.png";
+import logo from "@/public/assets/show.png";
 import Image from 'next/image';
 import  Styles  from './style/index.module.scss';
 
