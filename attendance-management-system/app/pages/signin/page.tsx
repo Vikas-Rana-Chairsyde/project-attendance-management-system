@@ -5,7 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import emailIcon from "@/public/assets/icons8-email-48.png";
 import hideIcon from "@/public/assets/hide.png";
 import showIcon from "@/public/assets/show.png";
-import logo from "@/public/assets/show.png";
+import logo from "@/public/assets/Logo-Schedura.png";
 import Image from 'next/image';
 import  Styles  from './style/index.module.scss';
 
