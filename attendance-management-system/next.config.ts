@@ -4,4 +4,13 @@ const nextConfig: NextConfig = {
   /* config options here */
 };
 
-export default nextConfig;
+module.exports = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'smarthr.co.in',
+      },
+    ],
+  },
+};
