@@ -1,0 +1,33 @@
+@media (max-width: 767px) {
+    .rightSide {
+        width: 100%;
+
+        form {
+            width: 93%;
+
+            .logo {
+                width: 152px;
+                height: 72px;
+            }
+
+            .mailPass {
+
+                .mail,
+                .password {
+
+                    .emailIcon {
+                        bottom: 26%;
+                        right: 2.2%;
+                    }
+
+                    .hide {
+                        bottom: 24.7%;
+                        right: 2.2%;
+                    }
+
+                }
+
+            }
+        }
+    }
+}

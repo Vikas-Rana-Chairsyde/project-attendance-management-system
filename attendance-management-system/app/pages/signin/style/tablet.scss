@@ -1,0 +1,109 @@
+@media (max-width: 1024px) {
+    .leftSide {
+        display: none !important;
+    }
+
+    .rightSide {
+        width: 100%;
+
+        form {
+            width: 62%;
+
+            .logo {
+                width: 167px;
+                height: 76px;
+                bottom: 75%;
+            }
+
+            .heading {
+                font-size: 24px;
+                font-weight: 900;
+            }
+
+            .formHeading {
+                font-size: 13.7px;
+                margin: 5px 1px 14px;
+
+            }
+
+            .mailPass {
+                width: 100%;
+
+                .mail,
+                .password {
+                    font-size: 15.5px;
+                    font-weight: 550;
+
+                    label {
+                        font-size: 13px;
+                        letter-spacing: 0.5px;
+                    }
+
+                    .error {
+                        font-size: 12px;
+                        letter-spacing: 0.3px;
+
+                    }
+
+                    .error2 {
+                        font-size: 12px;
+                        letter-spacing: 0.3px;
+                    }
+
+
+                    input[type='email'],
+                    input.passwordInput {
+                        font-size: 12px;
+                        font-weight: 500;
+                        height: 36px;
+                        border: 1px solid #cdced4;
+
+
+                    }
+                    .emailIcon {
+                        bottom: 26%;
+                        right: 2.2%;
+
+                    }
+
+                    .hide {
+                        bottom: 22.8%;
+                        right: 3%;
+                    }
+
+                }
+
+            }
+
+            .checkbox {
+                width: 100%;
+                margin-top: 9px;
+                font-size: 15px;
+
+                .remember {
+                    color: #6b7280;
+
+
+                    input[type='checkbox'] {
+                        margin-right: 10px;
+
+                    }
+                }
+
+                a {
+                    text-decoration: none;
+
+                }
+            }
+
+            .button {
+                width: 100%;
+                height: 36px;
+                font-size: 14px;
+                font-weight: 580;
+                text-align: center;
+
+            }
+        }
+    }
+}
