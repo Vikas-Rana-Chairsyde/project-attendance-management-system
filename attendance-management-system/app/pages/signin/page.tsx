@@ -52,7 +52,7 @@ const SignInForm = () => {
                         alt="background-image" width={2000}
                         height={600} className={Styles.people}></Image>
                     </div>
-                    <p className='whiteText'>Efficiently manage your workforce, streamline
+                    <p className={Styles.whiteText}>Efficiently manage your workforce, streamline
                         operations effortlessly.</p>
                     <div><Image src="https://smarthr.co.in/demo/html/template/assets/img/bg/bg-02.png"
                         alt="circle-image2" width={2000}
@@ -74,22 +74,22 @@ const SignInForm = () => {
                             height={600} className={Styles.logo}></Image>
                         {/* </div> */}
                         <h2 className={Styles.heading}>Sign In</h2>
-                        <p>Please enter your details to sign in</p>
+                        <p className={Styles.formHeading}>Please enter your details to sign in</p>
                       <div className={Styles.mailPass}>  
                         <div className={Styles.mail}>
                             <label>Email Address</label>
                             <Field type="email" name="email"></Field>
                             <Image src={emailIcon} alt="emailIcon" className={Styles.emailIcon}></Image>
-                            <div className='error'>
-                                <ErrorMessage name="email" component="div" style={{ color: 'red', fontSize: '12px', marginTop:'3px' }}/>
+                            <div className={Styles.error}>
+                                <ErrorMessage name="email" component="div" className={Styles.emailError}/*style={{ color: 'red', fontSize: '12px', marginTop:'3px' }}*//>
                             </div>
                         </div>
                         <div className={Styles.password}>
                             <label>Password</label>
                             <Field name="password" type={showPassword ? 'text' : 'password'} className={Styles.passwordInput}/>
                             <Image src= {showPassword ? showIcon : hideIcon } alt="passwordIcon" className={Styles.hide} onClick={togglePassword} ></Image>
-                            <div className='error2'>
-                                <ErrorMessage name="password" component="div" style={{ color: 'red', fontSize: '12px', marginTop:'3px' }}/>
+                            <div className={Styles.error2}>
+                                <ErrorMessage name="password" component="div" className={Styles.passwordError}/*style={{ color: 'red', fontSize: '12px', marginTop:'3px' }}*//>
                             </div>
                         </div>
                         </div>
@@ -102,9 +102,9 @@ const SignInForm = () => {
                         </div>
                         <button className={Styles.button} type='submit'>Sign In</button>
 
-                        <div className={Styles.account}>
-                            <p className={Styles.p}>Don't have an account? <a href="#" className={Styles.underline}>Create Account</a></p>
-                        </div>
+                        {/* <div className={Styles.account}>
+                            <p className={Styles.createAcc}>Don't have an account? <a href="#" className={Styles.underline}>Create Account</a></p>
+                        </div> */}
 
             
                         {/* <div id={Styles.or}>

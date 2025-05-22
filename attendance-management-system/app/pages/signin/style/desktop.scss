@@ -33,14 +33,14 @@
       padding: 40px;
       backdrop-filter: blur(26px);
       width: 80%;
-      height: 67%;
+      height: 74%;
       border: 1px solid white;
       margin: auto;
-      justify-content: center;
+      // justify-content: center;
       align-items: center;
 
       h1 {
-        font-weight:bolder;
+        font-weight:900;
         color: white;
         margin: 0;
         font-size: 40px;
@@ -57,19 +57,23 @@
     }
 
       .circle {
-        width: 10.5%;
+        width: 13.5%;
         right: 26%;
         position: absolute;
-        top: 30%;
-        height: 8.5%;
+        top: 34%;
+        height: 11%;
+      }
+      .whiteText{
+        text-align: center;
+        margin-top: 15px;
       }
 
       .circle_2 {
-        width: 23%;
-        height: 13%;
+        width: 20%;
+        height: 11%;
         position: absolute;
-        top: 111.5%;
-        left: 2%;
+        top: 106.7%;
+        left: 8%;
         padding: 0;
       }
 
@@ -98,8 +102,8 @@
       width: 55%;
       height: 100vh;
     
-      :global(img).logo {
-        width: 45%;
+      .logo {
+        width: 40%;
         height: 9%;
         position: relative;
         bottom: 155px;
@@ -114,7 +118,7 @@
         color: #202c4b;
       }
 
-      p {
+      .formHeading {
         margin: 1px;
         font-family: Roboto, sans-serif;
         font-size: 14.5px;
@@ -148,7 +152,20 @@
             font-size: 13px;
             letter-spacing: 0.5px;
           }
-    
+          .error{
+            height:15px;
+            width:100%;
+            color:red;
+            font-size:12px;
+            margin-top:3px;
+          }
+          .error2{
+            height:15px;
+            width:100%;
+            color:red;
+            font-size:12px;
+            margin-top:3px;
+          }
         
 
           input[type='email'],
@@ -168,7 +185,7 @@
           .emailIcon {
             position: absolute;
             right: 13.2%;
-            bottom: 51%;
+            bottom: 49%;
             width: 30px;
             height: 30px;
           }
@@ -178,18 +195,9 @@
             width: 32px;
             height: 34px;
             position: absolute;
-            bottom: 41.4%;
-            right: 13%;
+            bottom: 37.5%;
+            right: 13.1%;
           }
-          
-
-          // .error2 {
-          //   width: 100%;
-          //   font-size: 14px;
-          //   height: 24px;
-          // }
-          
-
           
         }
 
@@ -200,7 +208,7 @@
         font-size: 15px;
         margin-top: 9px;
         display: flex;
-        margin-top: 21px;
+        margin-top: 10px;
         font-weight: 500;
 
         .remember {
@@ -244,7 +252,7 @@
       }
 
       .account {
-        .p {
+        .createAcc {
           font-family: Roboto, sans-serif;
           font-size: 16px;
           font-weight: 400;
