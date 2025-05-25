@@ -29,8 +29,8 @@ const SignInForm = () => {
     });
     const [showPassword, setShowPassword] = useState(false);
     const togglePassword = () => setShowPassword(prev => !prev);
-    const handleSubmit = (values: typeof initialValues) => {
-        console.log('Form submitted:', values);
+    const handleSubmit = () => {
+        console.log('Form submitted');
     };
 
     return (
@@ -63,7 +63,8 @@ const SignInForm = () => {
             <div className={Styles.rightSide}>
                 <div className={Styles.logoIcon}>
                     <Image src={logo} alt='logo' width={2000}
-                        height={600} className={Styles.logo}></Image></div>
+                        height={600} className={Styles.logo}></Image>
+                </div>
                 <Formik
                     initialValues={initialValues}
                     validationSchema={signInSchema}
