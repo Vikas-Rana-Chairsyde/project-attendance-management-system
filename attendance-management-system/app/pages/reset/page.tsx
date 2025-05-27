@@ -12,17 +12,23 @@ import Style from "../reset/style/index.module.scss";
 const resetPassword = () => {
     const initialValues = {
         password: '',
+        password2: '',
     };
     const signInSchema = Yup.object({
         password: Yup.string()
             .required('Password is required'),
+        password2: Yup.string()
+            .required('Confirm Password is required')
+            .oneOf([Yup.ref('password')], 'Passwords must match'),
 
     });
     const handleSubmit = () => {
         console.log('Form submitted');
     };
     const [showPassword, setShowPassword] = useState(false);
+    const [showPassword2, setShowPassword2] = useState(false);
     const togglePassword = () => setShowPassword(prev => !prev);
+    const togglePassword2 = () => setShowPassword2(prev => !prev);
 
 
     return (
@@ -40,13 +46,15 @@ const resetPassword = () => {
                         <p className={Style.newPassword}>{TEXT.yourNewPasswordMust}</p>
                         <div className={Style.password}>
                             <label>{TEXT.password}</label>
-                            <div className={Style.passContainer}>
-                            <Field data-test="password" name="password" type={showPassword ? 'text' : 'password'} className={Style.passwordInput} />
-                            </div>
+                            {/* <div className={Style.passContainer}> */}
+                            <Field data-test="password" name="password" type={showPassword ? 'text' : 'password'} className={`${Style.passwordInput} ${showPassword ? Style.border_black : ''}`}/>
+
                             <Image data-test="passwordIcon" src={showPassword ? showIcon : hideIcon} alt="passwordIcon" className={Style.hide} onClick={togglePassword} ></Image>
-                            <div className={Style.error2}>
-                                <ErrorMessage name="password" component="div" className={Style.passwordError} />
-                            </div>
+                        </div>
+                        {/* <Image data-test="passwordIcon" src={showPassword ? showIcon : hideIcon} alt="passwordIcon" className={Style.hide} onClick={togglePassword} ></Image> */}
+                        <div className={Style.error1}>
+                            <ErrorMessage name="password" component="div" className={Style.passwordError} />
+                            {/* </div> */}
                         </div>
                         <div className={Style.passwordStrength}>
                             <span id="poor"></span>
@@ -58,16 +66,16 @@ const resetPassword = () => {
                         <div className={Style.password2}>
                             <label>{TEXT.confirmPassword}</label>
                             <div className={Style.passContainer2}>
-                            <Field data-test="password2" name="password2" type={showPassword ? 'text' : 'password'} className={Style.passwordInput2} />
+                                <Field data-test="password2" name="password2" type={showPassword2 ? 'text' : 'password'} className={`${Style.passwordInput2} ${showPassword ? Style.border_black : ''}`}/>
+                                <Image data-test="passwordIcon2" src={showPassword2 ? showIcon : hideIcon} alt="passwordIcon2" className={Style.hide2} onClick={togglePassword2} ></Image>
                             </div>
-                            <Image data-test="passwordIcon2" src={showPassword ? showIcon : hideIcon} alt="passwordIcon" className={Style.hide2} onClick={togglePassword} ></Image>
                             <div className={Style.error2}>
-                                <ErrorMessage name="password" component="div" className={Style.passwordError} />
+                                <ErrorMessage name="password2" component="div" className={Style.passwordError2} />
                             </div>
                         </div>
                         <button className={Style.button}>{TEXT.submit}</button>
                     </div>
-                    
+
                 </Form>
             </Formik>
             <div className={Style.copyrightContainer}>

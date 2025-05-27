@@ -9,6 +9,8 @@ export const TEXT = {
   labelPassword : 'Password',
   rememberMe : 'Remember Me',
   forgotPassword : 'Forgot Password?',
+  copyright: 'Copyright © 2025',
+
 };
 
 

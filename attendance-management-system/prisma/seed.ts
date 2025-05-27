@@ -121,12 +121,48 @@ async function main() {
             {
                 name: 'Nisha',
                 email: 'nisha+@google.com',
-                password: 'nisha#12',
+                password: 'nisha#12345678',
+                manager_id: undefined,
+                company_id: 1,
+                role_id: 4,
+                status_id: 1
+            },
+            {
+                name: 'Ritu',
+                email: 'ritu@google.com',
+                password: 'ritu#12345678',
                 manager_id: undefined,
                 company_id: 1,
                 role_id: 2,
-                status_id: 1
+                status_id: 1 
             },
+            {
+                name: 'Sunali',
+                email: 'sunali@google.com',
+                password: 'sunali#12345678',
+                manager_id: undefined,
+                company_id: 1,
+                role_id: 2,
+                status_id: 1 
+            },
+            {
+                name: 'Vikas',
+                email: 'vikas@google.com',
+                password: 'vikas#12345678',
+                manager_id: undefined,
+                company_id: 1,
+                role_id: 2,
+                status_id: 1 
+            },
+            {
+                name: 'Ankit Kalia',
+                email: 'ankit@google.com',
+                password: 'ankit#12345678',
+                manager_id: undefined,
+                company_id: 1,
+                role_id: 2,
+                status_id: 1 
+            }
         ]
     });
     console.log("users done");

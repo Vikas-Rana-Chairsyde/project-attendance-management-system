@@ -9,6 +9,8 @@ import logo from "@/public/assets/Logo-Schedura.png";
 import Image from 'next/image';
 import Styles from './style/index.module.scss';
 import { TEXT } from "@/app/pages/signin/constants/constant";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const SignInForm = () => {
     const initialValues = {
@@ -29,8 +31,23 @@ const SignInForm = () => {
     });
     const [showPassword, setShowPassword] = useState(false);
     const togglePassword = () => setShowPassword(prev => !prev);
-    const handleSubmit = () => {
-        console.log('Form submitted');
+
+    const router = useRouter();
+
+    const handleSubmit = async (values: typeof initialValues, { setSubmitting, setErrors }: any) => {
+        const res = await signIn("credentials", {
+            email: values.email,
+            password: values.password,
+            redirect: false,
+        });
+
+        if (res?.ok) {
+            router.push("/pages/dashboard");
+        } else {
+            setErrors({ password: "Invalid email or password" });
+        }
+
+        setSubmitting(false);
     };
 
     return (
@@ -53,9 +70,9 @@ const SignInForm = () => {
                         <p className={Styles.whiteText}>{TEXT.imagetext}</p>
                     </div>
                     <div><Image src="https://smarthr.co.in/demo/html/template/assets/img/bg/bg-02.png"
-                            alt="circle-image2" width={2000}
-                            height={600} className={Styles.circle_2}></Image>
-                        </div>
+                        alt="circle-image2" width={2000}
+                        height={600} className={Styles.circle_2}></Image>
+                    </div>
                 </div>
             </div>
 
@@ -70,15 +87,12 @@ const SignInForm = () => {
                     validationSchema={signInSchema}
                     onSubmit={handleSubmit}>
                     <Form>
-                        {/* <div>
-                        <Image src={logo} alt='logo' width={2000}
-                            height={600} className={Styles.logo}></Image></div> */}
                         <h2 className={Styles.heading}>{TEXT.signIn}</h2>
                         <p className={Styles.formHeading}>{TEXT.signInDetails}</p>
                         <div className={Styles.mailPass}>
                             <div className={Styles.mail}>
                                 <label>{TEXT.labelEmail}</label>
-                                <Field data-test="email" type="email" name="email"></Field>
+                                <Field data-test="email" type="email" name="email" className={Styles.emailfield}></Field>
                                 <Image src={emailIcon} alt="emailIcon" className={Styles.emailIcon}></Image>
                                 <div className={Styles.error}>
                                     <ErrorMessage name="email" component="div" className={Styles.emailError}/*style={{ color: 'red', fontSize: '12px', marginTop:'3px' }}*/ />
@@ -121,7 +135,7 @@ const SignInForm = () => {
 
                     </Form>
                 </Formik>
-                <div className={Styles.dot}>.</div>
+                <div className={Styles.copyright}>{TEXT.copyright}</div>
             </div>
         </div>
     );

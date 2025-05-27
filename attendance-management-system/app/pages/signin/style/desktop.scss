@@ -181,7 +181,7 @@
           width: 100%;
 
           &:focus {
-            border-color: var(--color-focus);
+            // border-color: var(--color-focus);
             outline: none;
           }
         }
@@ -324,8 +324,9 @@
     }
   }
 
-  .dot {
-    color: var(--color-white);
+  .copyright {
+    color: var(--color-black);
+    font-size:14px;
   }
 }
 
@@ -344,7 +345,7 @@
 :root {
   --color-orange: #FF7B3D;
   --color-dark-brown: #5C260C;
-  --color-white: #ffffff;
+  --color-black: black;
   --color-white-transparent: rgba(255, 247, 243, 0.25);
   --color-dark-blue: #202c4b;
   --color-muted: #92969c;
