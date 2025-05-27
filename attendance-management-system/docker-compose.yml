@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:15
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: attendance-management-system
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    env_file:
+      - .env
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: "postgresql://user:password@db:5432/attendance-management-system?schema=public"
+    volumes:
+      - .:/app  # Mounts the local project directory to the container
+      - /app/node_modules  # Avoids overwriting node_modules
+    ports:
+      - "3000:3000" 
+volumes:
+  postgres_data:

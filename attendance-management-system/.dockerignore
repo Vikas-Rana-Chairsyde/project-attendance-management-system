@@ -1,0 +1,76 @@
+# Node modules & dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Build artifacts
+.next
+dist
+out
+
+# Logs
+logs
+*.log
+debug.log
+pm2.log
+prisma/dev.db
+prisma/dev.db-journal
+
+# Docker-related
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Git-related
+.git
+.gitignore
+
+# IDE files
+.vscode
+.idea
+*.swp
+# Node modules & dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Build artifacts
+.next
+dist
+out
+
+# Logs
+logs
+*.log
+debug.log
+pm2.log
+prisma/dev.db
+prisma/dev.db-journal
+
+# Docker-related
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Git-related
+.git
+.gitignore
+
+# IDE files
+.vscode
+.idea
+*.swp
