@@ -8,13 +8,23 @@ import showIcon from "@/public/assets/show.png";
 import logo from "@/public/assets/Logo-Schedura.png";
 import { TEXT } from "../reset/constants/constant";
 import Style from "../reset/style/index.module.scss";
+import { useSearchParams } from 'next/navigation';
+
 
 const resetPassword = () => {
+    const searchParams = useSearchParams();
+    // const email = searchParams.get('email');
+    const token = useSearchParams().get("token");
+    console.log("token from URL:", token); // must be valid JWT
+
+    const [message, setMessage] = useState('');
+
     const initialValues = {
         password: '',
         password2: '',
     };
-    const signInSchema = Yup.object({
+
+    const validationSchema = Yup.object({
         password: Yup.string()
             .required('Password is required'),
         password2: Yup.string()
@@ -22,9 +32,27 @@ const resetPassword = () => {
             .oneOf([Yup.ref('password')], 'Passwords must match'),
 
     });
-    const handleSubmit = () => {
-        console.log('Form submitted');
+
+    const handleSubmit = async (values: { password: string; password2: string }) => {
+        const res = await fetch('/api/auth/reset-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                token,
+                newPassword: values.password,
+                confirmPassword: values.password2, 
+            }),
+        });
+
+        if (res.ok) {
+            setMessage('Password reset successful. You can now log in.');
+        } else {
+            const data = await res.json();
+            setMessage(`Reset failed: ${data.message}`);
+        }
     };
+
+
     const [showPassword, setShowPassword] = useState(false);
     const [showPassword2, setShowPassword2] = useState(false);
     const togglePassword = () => setShowPassword(prev => !prev);
@@ -38,7 +66,7 @@ const resetPassword = () => {
                     height={600} className={Style.logo}></Image>
             </div>
             <Formik initialValues={initialValues}
-                validationSchema={signInSchema}
+                validationSchema={validationSchema}
                 onSubmit={handleSubmit}>
                 <Form>
                     <div className={Style.formContainer}>
@@ -47,7 +75,7 @@ const resetPassword = () => {
                         <div className={Style.password}>
                             <label>{TEXT.password}</label>
                             {/* <div className={Style.passContainer}> */}
-                            <Field data-test="password" name="password" type={showPassword ? 'text' : 'password'} className={`${Style.passwordInput} ${showPassword ? Style.border_black : ''}`}/>
+                            <Field data-test="password" name="password" type={showPassword ? 'text' : 'password'} className={`${Style.passwordInput} ${showPassword ? Style.border_black : ''}`} />
 
                             <Image data-test="passwordIcon" src={showPassword ? showIcon : hideIcon} alt="passwordIcon" className={Style.hide} onClick={togglePassword} ></Image>
                         </div>
@@ -66,14 +94,14 @@ const resetPassword = () => {
                         <div className={Style.password2}>
                             <label>{TEXT.confirmPassword}</label>
                             <div className={Style.passContainer2}>
-                                <Field data-test="password2" name="password2" type={showPassword2 ? 'text' : 'password'} className={`${Style.passwordInput2} ${showPassword ? Style.border_black : ''}`}/>
+                                <Field data-test="password2" name="password2" type={showPassword2 ? 'text' : 'password'} className={`${Style.passwordInput2} ${showPassword ? Style.border_black : ''}`} />
                                 <Image data-test="passwordIcon2" src={showPassword2 ? showIcon : hideIcon} alt="passwordIcon2" className={Style.hide2} onClick={togglePassword2} ></Image>
                             </div>
                             <div className={Style.error2}>
                                 <ErrorMessage name="password2" component="div" className={Style.passwordError2} />
                             </div>
                         </div>
-                        <button className={Style.button}>{TEXT.submit}</button>
+                        <button className={Style.button} type="submit">{TEXT.submit}</button>
                     </div>
 
                 </Form>

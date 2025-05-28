@@ -138,7 +138,7 @@ async function main() {
             },
             {
                 name: 'Sunali',
-                email: 'sunali@google.com',
+                email: 'sunali.bhagat@poplify.com',
                 password: 'sunali#12345678',
                 manager_id: undefined,
                 company_id: 1,
