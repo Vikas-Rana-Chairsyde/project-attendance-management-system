@@ -29,11 +29,10 @@ const SignInForm = () => {
             .min(8, 'Password must be at least 8 characters.')
 
     });
+
     const [showPassword, setShowPassword] = useState(false);
     const togglePassword = () => setShowPassword(prev => !prev);
-
     const router = useRouter();
-
     const handleSubmit = async (values: typeof initialValues, { setSubmitting, setErrors }: any) => {
         const res = await signIn("credentials", {
             email: values.email,
@@ -43,10 +42,10 @@ const SignInForm = () => {
 
         if (res?.ok) {
             router.push("/pages/dashboard");
-        } else {
+        }
+        else {
             setErrors({ password: "Invalid email or password" });
         }
-
         setSubmitting(false);
     };
 
@@ -112,14 +111,13 @@ const SignInForm = () => {
                                 <Field data-test="checkbox" type="checkbox" name="rememberMe" className={Styles.accent} />{TEXT.rememberMe}
 
                             </label>
-                            <a href="#" data-test="forgotPassword">{TEXT.forgotPassword}</a>
+                            <a href="/pages/forgot" data-test="forgotPassword">{TEXT.forgotPassword}</a>
                         </div>
                         <button data-test="Submit" className={Styles.button} type='submit'>{TEXT.signIn}</button>
 
                         {/* <div className={Styles.account}>
                             <p className={Styles.createAcc}>Don't have an account? <a href="#" className={Styles.underline}>Create Account</a></p>
                         </div> */}
-
 
                         {/* <div id={Styles.or}>
                             <hr style={{ width: "45%", height: "0.01px", color: "rgb(255, 255, 255)" }} />

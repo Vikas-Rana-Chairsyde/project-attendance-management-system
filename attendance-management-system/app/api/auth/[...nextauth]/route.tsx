@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaClient } from "@/app/generated/prisma";
-// import bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
@@ -19,7 +19,7 @@ const handler = NextAuth({
         const user = await prisma.users.findUnique({
           where: { email: credentials.email },
         });
-        
+
         // const user = {
         //   id: 1,
         //   email: "abc@example.com",
@@ -29,13 +29,12 @@ const handler = NextAuth({
 
         if (!user) return null;
 
-
-        const isValid = credentials.password === user.password;
+        const isValid = await bcrypt.compare(credentials.password, user.password);
 
         if (!isValid) return null;
 
         return {
-          id: String(user.id),
+          id: String(user.id),  
           name: user.name,
           email: user.email,
         };
@@ -49,5 +48,4 @@ const handler = NextAuth({
 });
 
 export { handler as GET, handler as POST };
-
 

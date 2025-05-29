@@ -9,13 +9,14 @@ import logo from "@/public/assets/Logo-Schedura.png";
 import { TEXT } from "../reset/constants/constant";
 import Style from "../reset/style/index.module.scss";
 import { useSearchParams } from 'next/navigation';
-
+import { useRouter } from 'next/navigation';
 
 const resetPassword = () => {
+
     const searchParams = useSearchParams();
-    // const email = searchParams.get('email');
     const token = useSearchParams().get("token");
-    console.log("token from URL:", token); // must be valid JWT
+    const router = useRouter();
+    console.log("token from URL:", token);
 
     const [message, setMessage] = useState('');
 
@@ -32,7 +33,6 @@ const resetPassword = () => {
             .oneOf([Yup.ref('password')], 'Passwords must match'),
 
     });
-
     const handleSubmit = async (values: { password: string; password2: string }) => {
         const res = await fetch('/api/auth/reset-password', {
             method: 'POST',
@@ -40,24 +40,25 @@ const resetPassword = () => {
             body: JSON.stringify({
                 token,
                 newPassword: values.password,
-                confirmPassword: values.password2, 
+                confirmPassword: values.password2,
             }),
         });
 
         if (res.ok) {
-            setMessage('Password reset successful. You can now log in.');
+            setMessage('Password reset successful. Redirecting to login...');
+            setTimeout(() => {
+                router.push('/pages/signin');
+            }, 1000);
         } else {
             const data = await res.json();
             setMessage(`Reset failed: ${data.message}`);
         }
     };
 
-
     const [showPassword, setShowPassword] = useState(false);
     const [showPassword2, setShowPassword2] = useState(false);
     const togglePassword = () => setShowPassword(prev => !prev);
     const togglePassword2 = () => setShowPassword2(prev => !prev);
-
 
     return (
         <div className={Style.parentContainer}>
@@ -74,15 +75,12 @@ const resetPassword = () => {
                         <p className={Style.newPassword}>{TEXT.yourNewPasswordMust}</p>
                         <div className={Style.password}>
                             <label>{TEXT.password}</label>
-                            {/* <div className={Style.passContainer}> */}
                             <Field data-test="password" name="password" type={showPassword ? 'text' : 'password'} className={`${Style.passwordInput} ${showPassword ? Style.border_black : ''}`} />
 
                             <Image data-test="passwordIcon" src={showPassword ? showIcon : hideIcon} alt="passwordIcon" className={Style.hide} onClick={togglePassword} ></Image>
                         </div>
-                        {/* <Image data-test="passwordIcon" src={showPassword ? showIcon : hideIcon} alt="passwordIcon" className={Style.hide} onClick={togglePassword} ></Image> */}
                         <div className={Style.error1}>
                             <ErrorMessage name="password" component="div" className={Style.passwordError} />
-                            {/* </div> */}
                         </div>
                         <div className={Style.passwordStrength}>
                             <span id="poor"></span>
@@ -110,8 +108,6 @@ const resetPassword = () => {
                 <div>{TEXT.copyright}</div>
             </div>
         </div>
-
-
     );
 }
 

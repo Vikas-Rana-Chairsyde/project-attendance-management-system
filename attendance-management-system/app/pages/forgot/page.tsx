@@ -9,14 +9,14 @@ import { TEXT } from "../forgot/constants/constant";
 import Style from "../forgot/style/index.module.scss";
 import { useState } from 'react';
 
-
 const forgotPassword = () => {
     const [message, setMessage] = useState('');
 
     const initialValues = {
         email: '',
     };
-    const validationSchema = Yup.object({ 
+
+    const validationSchema = Yup.object({
         email: Yup.string()
             .required('Email is required')
             .email('Please enter a valid email address.'),
@@ -27,10 +27,10 @@ const forgotPassword = () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-              },
+            },
             body: JSON.stringify({ email: values.email }),
         });
-        
+
         if (res.ok) {
             setMessage('Check your email for the reset link.');
         } else {
@@ -40,7 +40,6 @@ const forgotPassword = () => {
 
 
     return (
-
         <div className={Style.parentContainer}>
             <div className={Style.logoContainer}>
                 <Image src={logo} alt='logo' width={2000}
@@ -74,7 +73,6 @@ const forgotPassword = () => {
                 <div>{TEXT.copyright}</div>
             </div>
         </div>
-
     );
 }
 
