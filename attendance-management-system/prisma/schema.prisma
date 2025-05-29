@@ -75,24 +75,26 @@ model companies {
 }
 
 model users {
-  id          Int                   @id @default(autoincrement())
-  name        String
-  email       String                @unique
-  password    String
-  manager_id  Int?
-  company_id  Int?
-  role_id     Int?
-  status_id   Int?
-  attendances attendances[]
-  requests    requests[]
-  user_leaves user_leave[]
-  profile     user_profile_details?
-  manager     users?                @relation("Manager", fields: [manager_id], references: [id])
-  company     companies?            @relation(fields: [company_id], references: [id])
-  role        master_user_roles?    @relation(fields: [role_id], references: [id])
-  status      master_user_statuses? @relation(fields: [status_id], references: [id])
-  User        users[]               @relation("Manager")
-  Request     requests[]            @relation("Approver")
+  id               Int                   @id @default(autoincrement())
+  name             String
+  email            String                @unique
+  password         String
+  manager_id       Int?
+  company_id       Int?
+  role_id          Int?
+  status_id        Int?
+  resetToken       String?
+  resetTokenExpiry DateTime?
+  attendances      attendances[]
+  requests         requests[]
+  user_leaves      user_leave[]
+  profile          user_profile_details?
+  manager          users?                @relation("Manager", fields: [manager_id], references: [id])
+  company          companies?            @relation(fields: [company_id], references: [id])
+  role             master_user_roles?    @relation(fields: [role_id], references: [id])
+  status           master_user_statuses? @relation(fields: [status_id], references: [id])
+  User             users[]               @relation("Manager")
+  Request          requests[]            @relation("Approver")
 }
 
 model user_profile_details {
