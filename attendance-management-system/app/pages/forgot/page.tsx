@@ -6,38 +6,11 @@ import Image from 'next/image';
 import logo from "@/public/assets/Logo-Schedura.png";
 import emailIcon from "@/public/assets/icons8-email-48.png";
 import { TEXT } from "../forgot/constants/constant";
+import { handleSubmit } from "../forgot/actions/action";
+import { CONSTANT } from "../forgot/constants/constant";
 import Style from "../forgot/style/index.module.scss";
-import { useState } from 'react';
 
 const forgotPassword = () => {
-    const [message, setMessage] = useState('');
-
-    const initialValues = {
-        email: '',
-    };
-
-    const validationSchema = Yup.object({
-        email: Yup.string()
-            .required('Email is required')
-            .email('Please enter a valid email address.'),
-    });
-
-    const handleSubmit = async (values: { email: string }) => {
-        const res = await fetch('/api/auth/forgot-password', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: values.email }),
-        });
-
-        if (res.ok) {
-            setMessage('Check your email for the reset link.');
-        } else {
-            setMessage('Error sending reset email.');
-        }
-    };
-
 
     return (
         <div className={Style.parentContainer}>
@@ -45,8 +18,8 @@ const forgotPassword = () => {
                 <Image src={logo} alt='logo' width={2000}
                     height={600} className={Style.logo}></Image>
             </div>
-            <Formik initialValues={initialValues}
-                validationSchema={validationSchema}
+            <Formik initialValues={CONSTANT.INITIAL_VALUES}
+                validationSchema={CONSTANT.VALIDATION_SCHEMA}
                 onSubmit={handleSubmit}>
                 <Form>
                     <div className={Style.formContainer}>
@@ -65,7 +38,6 @@ const forgotPassword = () => {
                             {TEXT.returnTo}
                             <a href="/pages/signin" data-test="signin">{TEXT.SignIn}</a>
                         </div>
-
                     </div>
                 </Form>
             </Formik>

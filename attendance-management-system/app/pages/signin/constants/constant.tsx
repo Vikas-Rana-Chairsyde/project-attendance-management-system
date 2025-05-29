@@ -1,4 +1,24 @@
 import React from 'react';
+import * as Yup from 'yup';
+
+export const CONSTANT = {
+    INITIAL_VALUES: {
+      email: '',
+      password: '',
+      rememberMe: false,
+    },
+
+    VALIDATION_SCHEMA: Yup.object({
+       email: Yup.string()
+                   .required('Email is required')
+                   .email('Please enter a valid email address.'),
+       
+               password: Yup.string()
+                   .required('Password is required')
+                   .min(8, 'Password must be at least 8 characters.')
+       
+    }),
+};
 
 export const TEXT = {
   bigHeading :'Empowering people through seamless HR management.',

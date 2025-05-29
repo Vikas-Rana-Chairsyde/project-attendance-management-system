@@ -1,4 +1,19 @@
 import React from "react";
+import * as Yup from 'yup';
+
+export const initialValues = {
+  password: '',
+  password2: '',
+};
+
+export const validationSchema = Yup.object({
+  password: Yup.string().required('Password is required'),
+  password2: Yup.string()
+    .required('Confirm Password is required')
+    .oneOf([Yup.ref('password')], 'Passwords must match'),
+});
+
+
 
 export const TEXT = {
     resetPassword: 'Reset Password',
