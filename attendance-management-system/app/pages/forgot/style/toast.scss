@@ -1,0 +1,17 @@
+.flashMessage {
+    border-radius: 10px ;
+    background-color: #03C95A;
+    font-size: 14px ;
+    color: #FFF;
+    border-color: #03C95A;
+    max-width: 360px ;
+    top: 15px ;
+    right: -2px ;
+    padding: 1rem ;
+    position: fixed ;
+
+    --toastify-icon-color-success: #ffffff;
+}
+
+    
+    

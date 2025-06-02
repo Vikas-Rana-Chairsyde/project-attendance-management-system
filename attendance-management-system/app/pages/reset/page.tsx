@@ -10,29 +10,15 @@ import { TEXT } from "../reset/constants/constant";
 import Style from "../reset/style/index.module.scss";
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+import {initialValues, validationSchema} from "./constants/constant";
 
 const resetPassword = () => {
-
     const searchParams = useSearchParams();
     const token = useSearchParams().get("token");
     const router = useRouter();
     console.log("token from URL:", token);
 
     const [message, setMessage] = useState('');
-
-    const initialValues = {
-        password: '',
-        password2: '',
-    };
-
-    const validationSchema = Yup.object({
-        password: Yup.string()
-            .required('Password is required'),
-        password2: Yup.string()
-            .required('Confirm Password is required')
-            .oneOf([Yup.ref('password')], 'Passwords must match'),
-
-    });
     const handleSubmit = async (values: { password: string; password2: string }) => {
         const res = await fetch('/api/auth/reset-password', {
             method: 'POST',
@@ -43,7 +29,6 @@ const resetPassword = () => {
                 confirmPassword: values.password2,
             }),
         });
-
         if (res.ok) {
             setMessage('Password reset successful. Redirecting to login...');
             setTimeout(() => {
@@ -54,7 +39,7 @@ const resetPassword = () => {
             setMessage(`Reset failed: ${data.message}`);
         }
     };
-
+    
     const [showPassword, setShowPassword] = useState(false);
     const [showPassword2, setShowPassword2] = useState(false);
     const togglePassword = () => setShowPassword(prev => !prev);

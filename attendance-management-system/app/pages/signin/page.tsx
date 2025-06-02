@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from 'react';
-import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import emailIcon from "@/public/assets/icons8-email-48.png";
 import hideIcon from "@/public/assets/hide.png";
@@ -8,28 +7,18 @@ import showIcon from "@/public/assets/show.png";
 import logo from "@/public/assets/Logo-Schedura.png";
 import Image from 'next/image';
 import Styles from './style/index.module.scss';
-import { TEXT } from "@/app/pages/signin/constants/constant";
+import { handleSubmit } from "./actions/action";
+import { useRouter } from 'next/navigation';
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { TEXT, CONSTANT } from "@/app/pages/signin/constants/constant";
 
 const SignInForm = () => {
+
     const initialValues = {
         email: '',
         password: '',
         rememberMe: false,
     };
-
-    const signInSchema = Yup.object({
-        email: Yup.string()
-            .required('Email is required')
-            .email('Please enter a valid email address.'),
-
-        password: Yup.string()
-            .required('Password is required')
-            .min(8, 'Password must be at least 8 characters.')
-
-    });
-
     const [showPassword, setShowPassword] = useState(false);
     const togglePassword = () => setShowPassword(prev => !prev);
     const router = useRouter();
@@ -75,15 +64,14 @@ const SignInForm = () => {
                 </div>
             </div>
 
-
             <div className={Styles.rightSide}>
                 <div className={Styles.logoIcon}>
                     <Image src={logo} alt='logo' width={2000}
                         height={600} className={Styles.logo}></Image>
                 </div>
                 <Formik
-                    initialValues={initialValues}
-                    validationSchema={signInSchema}
+                    initialValues={CONSTANT.INITIAL_VALUES}
+                    validationSchema={CONSTANT.VALIDATION_SCHEMA}
                     onSubmit={handleSubmit}>
                     <Form>
                         <h2 className={Styles.heading}>{TEXT.signIn}</h2>
@@ -138,6 +126,5 @@ const SignInForm = () => {
         </div>
     );
 }
-
 
 export default SignInForm;

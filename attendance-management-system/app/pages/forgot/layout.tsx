@@ -3,6 +3,10 @@ import { ReactNode } from 'react';
 import Styles from "../signin/style/index.module.scss";
 import Image from 'next/image';
 import { TEXT } from "@/app/pages/signin/constants/constant";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loader from '../../components/loader/loader';
+import './style/toast.scss';
 
 interface Layout1Props {
   children: ReactNode;
@@ -34,39 +38,16 @@ export default function Layout1({ children }: Layout1Props) {
                         </div>
                 </div>
             </div>
-
-
-
-      
       
       {children}
-      
-      
+      <ToastContainer toastClassName="flashMessage"
+       position="top-right"
+       hideProgressBar={true}
+       closeOnClick
+       pauseOnHover
+       autoClose={3000}
+       newestOnTop/>
     </div>
   );
 }
 
-
-
-
-
-
-// import React, { ReactNode } from 'react';
-
-// import Signin from "../signin/page";
-
-//   type LayoutProps = {
-//     children: ReactNode;
-//   };
-  
-//   const Layout1 = ({ children }: LayoutProps) => {
-//     return (
-//       <div className="auth-layout">
-//         {/* Shared header or styling for auth pages */}
-//         <Signin>{children}</Signin>
-//       </div>
-//     );
-//   };
-  
-//   export default Layout1;
-// app/pages/forgot/layout.tsx
