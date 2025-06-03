@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from 'react';
-import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Image from 'next/image';
 import hideIcon from "@/public/assets/hide.png";
@@ -10,36 +9,23 @@ import { TEXT } from "../reset/constants/constant";
 import Style from "../reset/style/index.module.scss";
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-import {initialValues, validationSchema} from "./constants/constant";
+import { PasswordResetService } from './service';
+import { initialValues, validationSchema } from "./constants/constant";
 
 const resetPassword = () => {
-    const searchParams = useSearchParams();
-    const token = useSearchParams().get("token");
     const router = useRouter();
-    console.log("token from URL:", token);
-
+    const searchParams = useSearchParams();
+    const token = searchParams.get('token');
     const [message, setMessage] = useState('');
+    const passwordResetService = new PasswordResetService(setMessage, router);
     const handleSubmit = async (values: { password: string; password2: string }) => {
-        const res = await fetch('/api/auth/reset-password', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                token,
-                newPassword: values.password,
-                confirmPassword: values.password2,
-            }),
-        });
-        if (res.ok) {
-            setMessage('Password reset successful. Redirecting to login...');
-            setTimeout(() => {
-                router.push('/pages/signin');
-            }, 1000);
-        } else {
-            const data = await res.json();
-            setMessage(`Reset failed: ${data.message}`);
+        if (!token) {
+            setMessage('Token not found in URL.');
+            return;
         }
+        await passwordResetService.resetPassword(token, values);
     };
-    
+
     const [showPassword, setShowPassword] = useState(false);
     const [showPassword2, setShowPassword2] = useState(false);
     const togglePassword = () => setShowPassword(prev => !prev);
@@ -84,7 +70,7 @@ const resetPassword = () => {
                                 <ErrorMessage name="password2" component="div" className={Style.passwordError2} />
                             </div>
                         </div>
-                        <button className={Style.button} type="submit">{TEXT.submit}</button>
+                        <button data-test="Submit" className={Style.button} type="submit">{TEXT.submit}</button>
                     </div>
 
                 </Form>

@@ -7,38 +7,22 @@ import showIcon from "@/public/assets/show.png";
 import logo from "@/public/assets/Logo-Schedura.png";
 import Image from 'next/image';
 import Styles from './style/index.module.scss';
-import { handleSubmit } from "./actions/action";
+import { SubmitHandler } from "./actions/action";
 import { useRouter } from 'next/navigation';
-import { signIn } from "next-auth/react";
 import { TEXT, CONSTANT } from "@/app/pages/signin/constants/constant";
+import Loader from '@/app/components/loader/loader';
 
 const SignInForm = () => {
 
-    const initialValues = {
-        email: '',
-        password: '',
-        rememberMe: false,
-    };
     const [showPassword, setShowPassword] = useState(false);
     const togglePassword = () => setShowPassword(prev => !prev);
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
-    const handleSubmit = async (values: typeof initialValues, { setSubmitting, setErrors }: any) => {
-        const res = await signIn("credentials", {
-            email: values.email,
-            password: values.password,
-            redirect: false,
-        });
-
-        if (res?.ok) {
-            router.push("/pages/dashboard");
-        }
-        else {
-            setErrors({ password: "Invalid email or password" });
-        }
-        setSubmitting(false);
-    };
+    const handler = new SubmitHandler(setLoading, router); 
 
     return (
+        <>
+            {loading && <Loader />}
         <div className={Styles.parentContainer}>
             <div className={Styles.leftSide}>
                 <div className={Styles.background}>
@@ -72,7 +56,7 @@ const SignInForm = () => {
                 <Formik
                     initialValues={CONSTANT.INITIAL_VALUES}
                     validationSchema={CONSTANT.VALIDATION_SCHEMA}
-                    onSubmit={handleSubmit}>
+                    onSubmit={handler.handleSubmit.bind(handler)}>
                     <Form>
                         <h2 className={Styles.heading}>{TEXT.signIn}</h2>
                         <p className={Styles.formHeading}>{TEXT.signInDetails}</p>
@@ -101,7 +85,7 @@ const SignInForm = () => {
                             </label>
                             <a href="/pages/forgot" data-test="forgotPassword">{TEXT.forgotPassword}</a>
                         </div>
-                        <button data-test="Submit" className={Styles.button} type='submit'>{TEXT.signIn}</button>
+                        <button data-test="Submit" className={Styles.button} type='submit' disabled={loading}>{TEXT.signIn}</button>
 
                         {/* <div className={Styles.account}>
                             <p className={Styles.createAcc}>Don't have an account? <a href="#" className={Styles.underline}>Create Account</a></p>
@@ -124,6 +108,7 @@ const SignInForm = () => {
                 <div className={Styles.copyright}>{TEXT.copyright}</div>
             </div>
         </div>
+        </>
     );
 }
 
