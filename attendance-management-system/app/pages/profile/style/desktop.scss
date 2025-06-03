@@ -1,0 +1,175 @@
+body {
+    background-color: #f7f9fa;
+}
+
+.mainContainer {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .background {
+        background-color: white;
+        height: 160px;
+        width: 100%;
+    }
+
+    .card {
+        padding: 20px;
+        background-color: #FFF;
+        transition: all 0.5s ease-in-out;
+        position: relative;
+        border-radius: 5px;
+        border: 1px solid #E5E7EB;
+        box-shadow: 0px 1px 1px 1px rgba(198, 198, 198, 0.2);
+        color: inherit;
+        height: 500px;
+        width: 90%;
+        position: absolute;
+        top: 100;
+
+        .card-body {
+            padding: 20px;
+        }
+    }
+
+    .formcontainer {
+        h1 {
+            color: black;
+            border-bottom: 1px solid #E5E7EB;
+            padding-bottom: 10px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        h2 {
+            color: black;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .grayBackground {
+            background-color: #f7f9fa;
+            border: 1px solid #F8F9FA;
+            border-radius: 4px;
+            width: 100%;
+            height: 125px;
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            padding: 15px;
+            gap: 10px;
+        }
+
+        .profilePhoto {
+            border: 1px dashed #e5e7eb;
+            width: 91px;
+            height: 90%;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photoIcon {
+            width: 100%;
+            height: 15px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .profiletext {
+            color: black;
+            font-size: 14px;
+        }
+
+        .imageSize {
+            color: #6B7280;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .upload {
+            color: white;
+            background-color: #f06537;
+            cursor: pointer;
+            border-radius: 5px;
+            padding: 3px 7px;
+            font-size: 12px;
+            font-weight: 600;
+
+        }
+
+        .cancel {
+            color: black;
+            font-size: 13px;
+        }
+
+    }
+
+    .nameDetails {
+        color: black;
+        display: flex;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 30px;
+        // justify-content: space-between;
+    }
+
+    .otherDetails {
+        color: black;
+        display: flex;
+        margin-top: 15px;
+        gap: 30px;
+    }
+
+    input {
+
+        &[name="firstName"],
+        &[name="lastName"],
+        &[type="date"],
+        &[type="tel"] {
+
+            border: 1px solid #000;
+            border-color: #E5E7EB;
+            color: #111827;
+            background-color: #ffffff;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.6;
+            border-radius: 5px;
+            padding: 0.5rem 0.625rem;
+            height: 38px;
+            transition: all 0.5s;
+
+        }
+    }
+
+    .dateofBirth,
+    .phone,
+    .lastName,
+    .firstName {
+        display: flex;
+        width: 100%;
+
+    }
+
+    .input {
+        width: 100%;
+    }
+
+    label {
+        padding-right: 20px;
+        width: 50%;
+        font-size: 14px;
+        font-weight: 500;
+        color: #202C4B;
+    }
+}

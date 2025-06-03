@@ -29,8 +29,8 @@ body {
 .list {
     list-style: none;
     display: flex;
-    gap: 15px;
-    margin-top: 10px;
+    gap: 20px;
+    margin-top: 5px;
     font-size: 14px;
     font-weight: 500;
     margin-right: 5px;
@@ -52,7 +52,7 @@ body {
 .optionprofileContainer {
     display: flex;
     margin-top: 7px;
-    gap: 15px;
+    gap: 20px;
     margin-right: 70px;
 }
 
@@ -65,15 +65,37 @@ body {
 .barIcon {
     display: inline-block;
     width: 31px;
-    margin-top: 15px;
+
     span {
         background-color: #F26522;
         display: block;
-        float: left;
         height: 3px;
         margin-bottom: 7px;
-        width: 31px;
+        width: 30px;
         border-radius: 2px;
         transition: all 0.5s;
     }
+}
+
+.sidebarContainer {
+    display: none;
+}
+a.active {
+    background: #E8E9EA;
+    border-radius: 4px;
+    width: 100%;
+    padding: 4px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon {
+    width: 16px;
+    height: 15px;
+    margin-right: 5px;
+}
+.liFlex {
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
