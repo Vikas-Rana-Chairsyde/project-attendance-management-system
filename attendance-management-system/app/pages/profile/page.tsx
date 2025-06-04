@@ -6,6 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Styles from "./style/index.module.scss";
 import photoIcon from "@/public/assets/photo.svg";
 
+
 export default function profile() {
 
     const initialValues = {
@@ -78,7 +79,10 @@ export default function profile() {
                                     </div>
                                 </div>
 
-
+                               <div className={Styles.submitButton}>
+                                <button type = "button" className={Styles.cancelButton}>Cancel</button>
+                                <button type = "button" className={Styles.saveButton}>Save</button>
+                               </div>
 
 
                             </div>

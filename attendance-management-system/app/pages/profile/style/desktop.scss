@@ -11,15 +11,13 @@ body {
 
     .background {
         background-color: white;
-        height: 160px;
+        height: 230px;
         width: 100%;
     }
 
     .card {
-        padding: 20px;
+        padding: 30px 20px;
         background-color: #FFF;
-        transition: all 0.5s ease-in-out;
-        position: relative;
         border-radius: 5px;
         border: 1px solid #E5E7EB;
         box-shadow: 0px 1px 1px 1px rgba(198, 198, 198, 0.2);
@@ -27,11 +25,7 @@ body {
         height: 500px;
         width: 90%;
         position: absolute;
-        top: 100;
-
-        .card-body {
-            padding: 20px;
-        }
+        top: 151px;
     }
 
     .formcontainer {
@@ -40,14 +34,16 @@ body {
             border-bottom: 1px solid #E5E7EB;
             padding-bottom: 10px;
             font-size: 18px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         h2 {
             color: black;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            margin-top: 14px;
+            margin-bottom: 14px;
             font-size: 14px;
+            font-weight: 600;
+
         }
 
         .grayBackground {
@@ -86,6 +82,7 @@ body {
         .profiletext {
             color: black;
             font-size: 14px;
+            font-weight: 600;
         }
 
         .imageSize {
@@ -147,7 +144,6 @@ body {
             border-radius: 5px;
             padding: 0.5rem 0.625rem;
             height: 38px;
-            transition: all 0.5s;
 
         }
     }
@@ -161,9 +157,9 @@ body {
 
     }
 
-    .input {
-        width: 100%;
-    }
+    // .input {
+    //     width: 100%;
+    // }
 
     label {
         padding-right: 20px;
@@ -171,5 +167,41 @@ body {
         font-size: 14px;
         font-weight: 500;
         color: #202C4B;
+    }
+
+    .submitButton {
+        width: 100%;
+        display: flex;
+        justify-content: right;
+        gap: 30px;
+        border-top: 1px solid #E5E7EB;
+        margin-top: 30px;
+
+    }
+
+    .cancelButton {
+        border: 1px solid #E5E7EB;
+        border-radius: 5px;
+        padding: 0.5rem 0.85rem;
+        font-size: 14px;
+        transition: all 0.5s;
+        font-weight: 500;
+        margin-top: 30px;
+        color: black;
+        cursor: pointer;
+
+    }
+
+    .saveButton {
+        background-color: #F26522;
+        border: 1px solid #F26522;
+        border-radius: 5px;
+        padding: 0.5rem 0.85rem;
+        font-size: 14px;
+        transition: all 0.5s;
+        font-weight: 500;
+        margin-top: 30px;
+        cursor: pointer;
+
     }
 }
