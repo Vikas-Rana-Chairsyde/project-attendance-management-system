@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+//TODO : - Add this in the service files by using classes
 export const handleSubmit = async (values: { email: string }) => {
     try {
         const res = await fetch('/api/auth/forgot-password', {
