@@ -1,0 +1,58 @@
+@media (max-width: 767px) {
+    .nameDetails {
+        flex-direction: column;
+        gap:0px !important;
+    }
+
+    .otherDetails {
+        flex-direction: column;
+        gap: 0px !important;
+        margin-top:0px  !important;
+    }
+
+    .submitButton {
+        margin-top: 24px;
+    }
+
+    .cancelButton {
+        margin-top: 19px !important;
+    }
+
+    .saveButton {
+        margin-top: 19px !important;
+
+    }
+
+    .phoneInput {
+        flex-direction: column;
+        width:100% !important ;
+        margin-top: 0px !important;
+    }
+
+    .card {
+        top: 67px !important;
+
+        .cardBody {
+            width: 100%;
+        }
+    }
+
+    .dateofBirth,
+    .phone,
+    .fullName{
+        flex-direction: column;
+        justify-content: unset;
+        align-items: unset !important;
+        margin-bottom:2px;
+
+    }
+    .nameError,.phoneError {
+        height: 14px;
+    }
+    .dateError{
+        height: 14px;
+        margin-top:1px;
+    }
+
+
+}
