@@ -1,13 +1,21 @@
 @media (max-width: 767px) {
+
+    .mainContainer {
+        label {
+            margin-bottom:5px;
+        }
+        .phoneLabel {
+            margin-top: 0px;
+        }
     .nameDetails {
         flex-direction: column;
-        gap:0px !important;
+        gap: 0px !important;
     }
 
     .otherDetails {
         flex-direction: column;
         gap: 0px !important;
-        margin-top:0px  !important;
+        margin-top: 0px !important;
     }
 
     .submitButton {
@@ -25,7 +33,7 @@
 
     .phoneInput {
         flex-direction: column;
-        width:100% !important ;
+        width: 100% !important;
         margin-top: 0px !important;
     }
 
@@ -39,20 +47,29 @@
 
     .dateofBirth,
     .phone,
-    .fullName{
+    .fullName {
         flex-direction: column;
         justify-content: unset;
         align-items: unset !important;
-        margin-bottom:2px;
+        margin-bottom: 2px;
 
     }
-    .nameError,.phoneError {
-        height: 14px;
-    }
-    .dateError{
-        height: 14px;
-        margin-top:1px;
+
+    .fullNamecontainer {
+        flex-direction: column;
+        align-items: unset !important;
+
     }
 
+    .nameError,
+    .phoneError {
+        height: 14px;
+    }
+
+    .dateError {
+        height: 14px;
+        margin-top: 1px;
+    }
+    }
 
 }
